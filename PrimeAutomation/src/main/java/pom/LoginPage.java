@@ -6,6 +6,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 
+import static util.Tools.waitBy;
+
 public class LoginPage {
     @FindBy(how = How.ID, using = "user")
     private WebElement userImput;
@@ -29,13 +31,13 @@ public class LoginPage {
     }
 
     public LoginPage doLogin(String user, String password){
-        userImput.sendKeys(user);
-        passwordImput.sendKeys(password);
-        loginImput.click();
+        waitBy(userImput).sendKeys(user);
+        waitBy(passwordImput).sendKeys(password);
+        waitBy(loginImput).click();
         return this;
     }
 
-    public String checkInitialPag(){
+    public String checkInitialPag() {
         return initialPage.getAttribute("aria-label");
     }
 }
